@@ -2,6 +2,7 @@ import os
 import sys
 from dataclasses import dataclass
 
+import pandas as pd
 from catboost import CatBoostRegressor
 from sklearn.ensemble import (
     AdaBoostRegressor,
@@ -21,6 +22,7 @@ from src.utils import save_object,evaluate_models
 
 @dataclass
 class ModelTrainerConfig:
+    """Create model pkl file"""
     trained_model_file_path=os.path.join("artifacts","model.pkl")
 
 class ModelTrainer:
@@ -31,11 +33,19 @@ class ModelTrainer:
     def initiate_model_trainer(self,train_array,test_array):
         try:
             logging.info("Split training and test input data")
-            X_train,y_train,X_test,y_test=(
-                train_array[:,:-1],
-                train_array[:,-1],
-                test_array[:,:-1],
-                test_array[:,-1]
+            # X_train,y_train,X_test,y_test=(
+            #     train_array[:,:-1],
+            #     train_array[:,-1],
+            #     test_array[:,:-1],
+            #     test_array[:,-1]
+            # )
+            train_array = pd.read_csv(train_array)
+            test_array = pd.read_csv(test_array)
+            X_train, y_train, X_test, y_test = (
+                train_array.drop('Price',axis=1),
+                train_array['Price'],
+                test_array.drop('Price',axis=1),
+                test_array['Price']
             )
             models = {
                 "Random Forest": RandomForestRegressor(),
@@ -97,7 +107,7 @@ class ModelTrainer:
             ]
             best_model = models[best_model_name]
 
-            if best_model_score<0.6:
+            if best_model_score<0.75:
                 raise CustomException("No best model found")
             logging.info(f"Best found model on both training and testing dataset")
 
