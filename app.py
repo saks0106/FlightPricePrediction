@@ -302,37 +302,6 @@ def predict():
         pred_df = data.get_data_as_data_frame()
         pred_pipeline = PredictPipeline()
         prediction = pred_pipeline.predict(pred_df)
-        # prediction=model.predict([[
-        #     Total_stops,
-        #     Journey_day,
-        #     Journey_month,
-        #     Arrival_hour,
-        #     Arrival_min,
-        #     Dep_hour,
-        #     Dep_min,
-        #     Duration_Mins,
-        #     Air_India,
-        #     GoAir,
-        #     IndiGo,
-        #     Jet_Airways,
-        #     Jet_Airways_Business,
-        #     Multiple_carriers,
-        #     Multiple_carriers_Premium_economy,
-        #     SpiceJet,
-        #     Trujet,
-        #     Vistara,
-        #     Vistara_Premium_economy,
-        #     s_Chennai,
-        #     s_Delhi,
-        #     s_Kolkata,
-        #     s_Mumbai,
-        #     d_Cochin,
-        #     d_Delhi,
-        #     d_Hyderabad,
-        #     d_Kolkata,
-        #     d_New_Delhi
-        # ]])
-        #
         output = round(prediction[0], 2)
 
         return render_template('home.html', prediction_text="Your Flight price is Rs. {}".format(output))
