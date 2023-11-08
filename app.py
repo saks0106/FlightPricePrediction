@@ -11,6 +11,8 @@ from src.exception import CustomException
 import sys
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
+
+
 application = Flask(__name__)
 app = application
 # model = pickle.load(open("model.pkl", "rb"))
@@ -339,4 +341,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8080) 
