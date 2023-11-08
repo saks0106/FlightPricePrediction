@@ -11,6 +11,8 @@ from src.exception import CustomException
 import sys
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
+
+
 application = Flask(__name__)
 app = application
 # model = pickle.load(open("model.pkl", "rb"))
