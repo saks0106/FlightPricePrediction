@@ -41,6 +41,7 @@ def predict():
         Journey_month = int(pd.to_datetime(date_dep, format="%Y-%m-%dT%H:%M").month)
         # print("Journey Date : ",Journey_day, Journey_month)
 
+
         # Arrival
         date_arr = request.form["Arrival_Time"]
         Arrival_hour = int(pd.to_datetime(date_arr, format="%Y-%m-%dT%H:%M").hour)
@@ -310,4 +311,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080) 
+    app.run() #host='0.0.0.0', port=8080
