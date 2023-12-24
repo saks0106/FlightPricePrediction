@@ -1,13 +1,15 @@
 import random
-
 from flask import Flask, request, render_template
 from flask_cors import cross_origin
 import sklearn
+
 import pickle
 import pandas as pd
+
 import os
 from src.utils import load_object
 from src.exception import CustomException
+
 import sys
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
